@@ -17,7 +17,7 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return [/*
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -37,7 +37,7 @@ class SiteController extends Controller
                 'actions' => [
                     'logout' => ['post'],
                 ],
-            ],
+            ],*/
         ];
     }
 
@@ -64,27 +64,6 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
-     *
-     * @return string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
      * Logout action.
      *
      * @return string
@@ -93,6 +72,6 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect('../../../frontend/web/site/logout');
     }
 }

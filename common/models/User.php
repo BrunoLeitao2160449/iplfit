@@ -25,6 +25,8 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const ROLE_USER = 10;
+    const ROLE_ADMIN = 20;
 
 
     /**
@@ -185,5 +187,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function isUserGuest($username){
+
+        if(static::findOne(['username' => $username, 'role' => self::ROLE_USER])){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
