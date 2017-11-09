@@ -67,11 +67,12 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
+<section class="footer tbpadding">
     <div class="container">
-        <p class="pull-left">&copy; IPLFit <?= date('Y') ?></p>
+            <p class="pull-left">&copy; IPLFit <?= date('Y') ?></p>
+        </div>
     </div>
-</footer>
+</section>
 
 <?php $this->endBody() ?>
 </body>

@@ -1,152 +1,261 @@
-/*!
- * Start Bootstrap - Landing Page (https://startbootstrap.com/template-overviews/landing-page)
- * Copyright 2013-2017 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
- */
+body {
+    font-family: 'Montserrat Alternates';
+}
 
-body, html {
+.navbar-default {
+    background-color: #f1761e;
+    border-color: #c84403;
+}
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #050505;
+}
+.navbar-default .navbar-text {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #050505;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+    background-color: #f1761e;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+    color: #050505;
+    background-color: #c84403;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li.divider {
+    background-color: #c84403;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #050505;
+    background-color: #c84403;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #050505;
+    background-color: #c84403;
+}
+.navbar-default .navbar-toggle {
+    border-color: #c84403;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #c84403;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #ffffff;
+}
+.navbar-default .navbar-link {
+    color: #ffffff;
+}
+.navbar-default .navbar-link:hover {
+    color: #050505;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ffffff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #050505;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #050505;
+        background-color: #c84403;
+    }
+}
+
+
+/* Carousel Styles */
+
+.carousel-control {
+    color: brown;
+}
+
+.carousel-indicators .active {
+    background-color: #ff5900;
+
+}
+
+.carousel-inner img {
     width: 100%;
-    height: 100%;
+    max-height: 420px;
 }
 
-body, h1, h2, h3, h4, h5, h6 {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
+.carousel-control {
+    width: 0;
 }
 
-.intro-header {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    text-align: center;
-    color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
-    background-size: cover;
+.carousel-control.left,
+.carousel-control.right {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    background-image: none;
+    background-repeat: no-repeat;
+    text-shadow: none;
+    margin-right: 25px;
 }
 
-.intro-message {
-    position: relative;
-    padding-top: 20%;
-    padding-bottom: 20%;
+.carousel-control.left span {
+    margin-left: 15px;
+    font-size: 60px;
+
+
 }
 
-.intro-message>h1 {
-    margin: 0;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-    font-size: 5em;
+.carousel-control.right span {
+    font-size: 60px;
+    margin-right: 50px;
 }
 
-.intro-divider {
-    width: 400px;
-    border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+    position: absolute;
+    top: 45%;
+    z-index: 5;
+    display: inline-block;
+
 }
 
-.intro-message>h3 {
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .icon-prev {
+    left: 0;
 }
 
-.intro-social-buttons i {
-    font-size: 80%;
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next {
+    right: 0;
+
 }
 
-@media(max-width:767px) {
-    .intro-message {
-        padding-bottom: 15%;
-    }
-    .intro-message>h1 {
-        font-size: 3em;
-    }
-    ul.intro-social-buttons>li {
-        display: block;
-        margin-bottom: 20px;
-        padding: 0;
-    }
-    ul.intro-social-buttons>li:last-child {
-        margin-bottom: 0;
-    }
-    .intro-divider {
-        width: 100%;
-    }
+.carousel-control.left span,
+.carousel-control.right span {
+    background-color: none;
+
 }
 
-.network-name {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 2px;
+.carousel-control.left span:hover,
+.carousel-control.right span:hover {
+    opacity: .7;
+    filter: alpha(opacity=70);
 }
 
-.content-section-a {
-    padding: 50px 0;
-    background-color: #f8f8f8;
+/* Carousel Header Styles */
+.header-text {
+    position: absolute;
+    top: 35%;
+    left: 1.8%;
+    right: auto;
+    width: 96.66666666666666%;
+    color: #000;
 }
 
-.content-section-b {
-    padding: 50px 0;
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
+.header-text h2 {
+    font-size: 30px;
 }
 
-.section-heading {
+.header-text h2 span {
+
+    padding: 10px;
+}
+
+.header-text h3 span {
+
+    padding: 15px;
+}
+
+.btn-min-block {
+    min-width: 170px;
+    line-height: 26px;
+}
+
+.btn-theme {
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin-right: 15px;
+}
+
+.btn-theme:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+/*below banner text  */
+.banner-bottom {
+    padding: 3em 0 3em;
+}
+.bigpixi_head {
+    font-size: 35px;
+}
+.bigpixi_head span {
+    color: #212121;
+}
+.bigpixi_head {
+    font-size: 36px;
+    color: #c84403;
+    font-weight: 600;
     margin-bottom: 30px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: .8em;
+    position: relative;
 }
-
-.section-heading-spacer {
-    float: left;
-    width: 200px;
-    border-top: 3px solid #e7e7e7;
+.bigpixi_head:before {
+    width: 11%;
+    bottom: 8%;
+    left: 44.5%;
 }
-
-.banner {
-    padding: 100px 0;
-    color: #f8f8f8;
-    background: url(../img/banner-bg.jpg) no-repeat center center;
-    background-size: cover;
+.bigpixi_head:after {
+    width: 18%;
+    right: 41%;
+    bottom: 0%;
 }
-
-.banner h2 {
-    margin: 0;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-    font-size: 3em;
+.bigpixi_head:before  {
+    position: absolute;
+    background: #c84403;
+    height: 2px;
+    content: '';
 }
-
-.banner ul {
-    margin-bottom: 0;
+p.bigpixipara {
+    font-size: 14px;
+    color: #777;
+    width: 100%;
+    margin: 0 auto;
+    line-height: 25px;
+    text-align: center;
 }
-
-.banner-social-buttons {
-    float: right;
-    margin-top: 0;
+.tbpadding {
+    padding: 60px 60px;
 }
+.footer {
 
-@media(max-width:1199px) {
-    ul.banner-social-buttons {
-        float: left;
-        margin-top: 15px;
-    }
-}
+    padding-top:100px;
+    background-color:#e0e1e2;
 
-@media(max-width:767px) {
-    .banner h2 {
-        margin: 0;
-        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-        font-size: 3em;
-    }
-    ul.banner-social-buttons>li {
-        display: block;
-        margin-bottom: 20px;
-        padding: 0;
-    }
-    ul.banner-social-buttons>li:last-child {
-        margin-bottom: 0;
-    }
-}
-
-footer {
-    padding: 50px 0;
-    background-color: #f8f8f8;
-}
-
-p.copyright {
-    margin: 15px 0 0;
 }
