@@ -31,7 +31,9 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => Html::img('@web/images/fitlogo.png', ['alt'=>'IPLFit', 'width'=>35, 'height'=>31 ]),
         'brandUrl' => Yii::$app->homeUrl,
-
+        'options' => [
+            'class' => 'navbar-inverse navbar-fixed-top',
+        ],
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
@@ -67,9 +69,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; IPLFit <?= date('Y') ?></p>
     </div>
 </footer>
 
