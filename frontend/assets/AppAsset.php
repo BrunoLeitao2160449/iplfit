@@ -13,7 +13,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/template-iplfit.css',
-        'css/site.css'
+        'css/site.css',
     ];
     public $js = [
         'js/template-js.js',

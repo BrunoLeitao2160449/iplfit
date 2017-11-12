@@ -36,7 +36,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Home', 'url' => ['../web/']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
@@ -66,13 +66,18 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-
-<section class="footer tbpadding">
-    <div class="container">
             <p class="pull-left">&copy; IPLFit <?= date('Y') ?></p>
-        </div>
-    </div>
-</section>
+
+<footer style="background-color: #151515; position: fixed; bottom: 0; left: 0; right: 0; height: 35px;text-align: center; color: #CCC ">
+    <p style="padding: 10.5px; margin: 0px; line-height: 100%">
+        © <?= date('Y') ?>
+        <a style="color:#C84403; text-decoration:none;" href="../web/">
+            IPLFit
+        </a>
+        , Bruno Leitão & Nelson Silva
+    </p>
+</footer>
+
 
 <?php $this->endBody() ?>
 </body>
