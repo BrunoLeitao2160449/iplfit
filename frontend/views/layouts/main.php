@@ -58,15 +58,14 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
+
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
+
 </div>
-            <p class="pull-left">&copy; IPLFit <?= date('Y') ?></p>
 
 <footer style="background-color: #151515; position: fixed; bottom: 0; left: 0; right: 0; height: 35px;text-align: center; color: #CCC ">
     <p style="padding: 10.5px; margin: 0px; line-height: 100%">
