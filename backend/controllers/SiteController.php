@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -79,5 +80,11 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->redirect('../../../frontend/web/site/logout');
+    }
+
+    public function actionUser(){
+        $model = new User();
+
+        return $this->render('userView', ['utilizadores' => $model->getUsers()]);
     }
 }

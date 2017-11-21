@@ -10,9 +10,9 @@ use yii\bootstrap\ActiveForm;
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info" >
-            <div class="panel-heading">
+    <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div  class="panel panel-info">
+            <div class="panel-heading" >
                 <div class="panel-title">Login</div>
                 <!--               <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div> -->
             </div>
