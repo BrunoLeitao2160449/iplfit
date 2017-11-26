@@ -24,9 +24,21 @@ use yii\bootstrap\ActiveForm;
 
             <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'email') ?>
-
             <?= $form->field($model, 'password')->passwordInput() ?>
+
+            <?= $form->field($model, 'nome')->textInput()?>
+
+            <?= $form->field($model, 'email')->textInput() ?>
+
+            <?= $form->field($model,'data_nasc')->textInput(['type' => 'date', 'format' => 'php:Y-m-d']) ?>
+
+            <?= $form->field($model, 'altura')->textInput(['type' => 'decimal']) ?>
+
+            <?= $form->field($model, 'peso')->textInput(['type' => 'decimal']) ?>
+
+            <?= $form->field($model, 'meta_peso')->textInput(['type' => 'decimal']) ?>
+
+            <?= $form->field($model, 'obs')->textInput() ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
