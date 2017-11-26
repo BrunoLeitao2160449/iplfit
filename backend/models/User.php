@@ -9,6 +9,7 @@
 namespace backend\models;
 
 
+use Yii;
 use yii\base\Model;
 use yii\httpclient\Client;
 
@@ -19,11 +20,31 @@ class User extends Model
         $client = new Client();
         $response = $client->createRequest()
             ->setMethod('get')
-            ->setUrl('http://localhost:8888/complemento')
+            ->setUrl(Yii::$app->params['api-basic-url'].'mais')
             ->send();
 
         if ($response->isOk) {
             return json_decode($response->content);
+        } else {
+            return null;
+        }
+    }
+
+    public function deleteUser($id){
+
+        $client = new Client();
+        $response = $client->createRequest()
+            ->setMethod('delete')
+            ->setUrl(Yii::$app->params['api-basic-url'].'mais/'.$id)
+            ->send();
+
+        $deleteUser = $client->createRequest()
+            ->setMethod('delete')
+            ->setUrl(Yii::$app->params['api-basic-url'].'users/'.$id)
+            ->send();
+
+        if ($response->isOk) {
+            return json_decode($response->content).json_decode($deleteUser->content);
         } else {
             return null;
         }

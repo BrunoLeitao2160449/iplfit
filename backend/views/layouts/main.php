@@ -37,6 +37,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Users Manager', 'url' => ['/site/usersfind']],
     ];
     if (!Yii::$app->user->isGuest) {
         $menuItems[] = '<li>'

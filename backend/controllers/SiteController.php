@@ -21,7 +21,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','logout'],
+                'only' => ['index','logout', 'usersfind'],
                 'rules' => [
                     [
                         'actions' => ['error'],
@@ -36,7 +36,12 @@ class SiteController extends Controller
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ]
+                    ],
+                    [
+                    'actions' => ['usersfind'],
+                    'allow' => true,
+                    'roles' => ['admin'],
+                ]
                 ],
             ],
             'verbs' => [
@@ -82,9 +87,17 @@ class SiteController extends Controller
         return $this->redirect('../../../frontend/web/site/logout');
     }
 
-    public function actionUser(){
+    public function actionUsersfind(){
         $model = new User();
 
-        return $this->render('userView', ['utilizadores' => $model->getUsers()]);
+        return $this->render('usersView', ['utilizadores' => $model->getUsers()]);
+    }
+
+    public function actionDeleteuser($id){
+        $model = new User();
+
+        $model->deleteUser($id);
+
+        return $this->render('usersView', ['utilizadores' => $model->getUsers()]);
     }
 }
