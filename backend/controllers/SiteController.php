@@ -93,6 +93,12 @@ class SiteController extends Controller
         return $this->render('usersView', ['utilizadores' => $model->getUsers()]);
     }
 
+    public function actionTest() {
+        $model = new User();
+
+        return $this->renderAjax('usersView', ['utilizadores' => $model->getUsers()]);
+    }
+
     public function actionDeleteuser($id){
         $model = new User();
 

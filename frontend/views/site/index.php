@@ -2,14 +2,42 @@
 
 /* @var $this yii\web\View */
 
+use yii\bootstrap\Html;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
+
 $this->title = 'IPLFit';
+?>
+
+<?php
+Modal::begin([
+    'header' => '<h4>Login</h4>',
+    'id' => 'modal',
+    'size' => 'modal-lg',
+]);
+
+echo "<div id='modalContent'></div>";
+
+Modal::end();
 ?>
 
 
 <div  style="background: url('../web/images/food5.jpg'); min-height: 800px;">
     <div class="container">
-        <br>
-        <p style="margin-top: 125px; font-size: 65px; font-weight: 700; text-align: center; color: #151515"> Lose Weight with
+
+        <p style="margin-top: 100px; text-align: center">
+            <a>
+                <?= Html::button('Login', ['value' => Url::to(['site/login']), 'class'=>'btn btn-success btn-lg', 'id' => 'modalCreateCompany']) ?>
+            </a>
+
+            <a >
+                <button type="button" class="btn btn-info btn-lg">
+                    <b style="font-size: large"> Signup </b>
+                </button>
+            </a>
+        </p>
+
+        <p style="margin-top: 20px; font-size: 65px; font-weight: 700; text-align: center; color: #151515"> Lose Weight with
             <span style="margin-top: 150px; font-size: 65px; font-weight: 700; text-align: center; color: #C84403">
                 IPLFit
             </span> !</p>
@@ -23,6 +51,18 @@ $this->title = 'IPLFit';
                 <a style="font-weight: 700; font-size: 33px; color: black;">
                         "IPLFit"
                 </a>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+
             </div>
         </div>
     </div>

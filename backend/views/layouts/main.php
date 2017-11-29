@@ -38,6 +38,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Users Manager', 'url' => ['/site/usersfind']],
+        ['label' => 'Users', 'url' => ['/user/index']],
     ];
     if (!Yii::$app->user->isGuest) {
         $menuItems[] = '<li>'
@@ -55,7 +56,6 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -65,12 +65,14 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
+<footer style="background-color: #151515; position: fixed; bottom: 0; left: 0; right: 0; height: 35px;text-align: center; color: #CCC ">
+    <p style="padding: 10.5px; margin: 0px; line-height: 100%">
+        © <?= date('Y') ?>
+        <a style="color:#C84403; text-decoration:none;" href="../web/">
+            IPLFit
+        </a>
+        , Bruno Leitão & Nelson Silva
+    </p>
 </footer>
 
 <?php $this->endBody() ?>
