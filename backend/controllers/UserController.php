@@ -2,10 +2,10 @@
 
 namespace backend\controllers;
 
-use common\models\ComplementoUser;
+use common\models\Auth;
+use common\models\Complemento;
 use Yii;
 use common\models\User;
-use common\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -44,7 +44,7 @@ class UserController extends Controller
             'dataProvider' => $dataProvider,
         ]);*/
 
-        $modelData = UserSearch::find()->all();
+        $modelData = user::find()->all();
 
         return $this->render('index', ['data' => $modelData]);
 
@@ -57,8 +57,9 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+
+        return $this->render('teste', [
+            'model' => User::findOne(['id' => $id]),
         ]);
     }
 
@@ -103,17 +104,56 @@ class UserController extends Controller
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
+     * @param $pois
      * @return mixed
+     * @internal param string $responseBoolean
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $response)
     {
-        $ComplementoUser = ComplementoUser::find()->where(['id_user' => $id])->one();
+        if($id != null && $response == null)
+        {
+            echo $this->renderAjax('DeletePopUp', ['id' => $id]);
 
-        $ComplementoUser->delete();
+        }else {if ($id != null && $response != null) {
+                if ($response == "yes") {
+                    $ComplementoUser = Complemento::find()->where(['id_user' => $id])->one();
 
-        $this->findModel($id)->delete();
+                    $ComplementoUser->delete();
 
-        return $this->redirect(['index']);
+                    $auth = Auth::find()->where(['user_id' => $id])->one();
+
+                    $auth->delete();
+
+                    $this->findModel($id)->delete();
+
+                    return $this->redirect(['index']);
+                } else {
+                    return $this->redirect(['index']);
+                }
+            } else {
+                return $this->redirect(['index']);
+            }
+        }
+
+    }
+
+    public function actionModalDelete($id, $response)
+    {
+        if ($id != null && $response != null) {
+            if ($response == "yes") {
+                $ComplementoUser = Complemento::find()->where(['id_user' => $id])->one();
+
+                $ComplementoUser->delete();
+
+                $this->findModel($id)->delete();
+
+                return $this->redirect(['index']);
+            } else {
+                return $this->redirect(['index']);
+            }
+        } else {
+            return $this->redirect(['index']);
+        }
     }
 
     /**

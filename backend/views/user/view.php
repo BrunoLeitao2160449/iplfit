@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\Complemento;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -30,13 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
             'email:email',
-            'status',
-            'created_at',
-            'updated_at',
+            [
+              'label' => 'Nome',
+              'value' => $model->complemento->nome,
+            ],
         ],
     ]) ?>
 

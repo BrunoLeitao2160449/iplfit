@@ -197,4 +197,8 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
     }
+
+    public function getComplemento() {
+        return $this->hasOne(Complemento::className(), ['id_user' => 'id']);
+    }
 }

@@ -19,7 +19,7 @@ use Yii;
  * @property User $idUser
  * @property DiaUtilizador[] $diaUtilizadors
  */
-class ComplementoUser extends \yii\db\ActiveRecord
+class Complemento extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

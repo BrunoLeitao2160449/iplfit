@@ -10,25 +10,8 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url; ?>
 
-<!-- Modal Window to create new company -->
-<?php
-Modal::begin([
-    'header' => '<h4>Nova Empresa</h4>',
-    'id' => 'modal',
-    'size' => 'modal-lg',
-]);
-
-echo "<div id='modalContent'></div>";
-
-Modal::end();
-?>
-
-
 <div class="container">
 
-    <div class="pull-right">
-        <?= Html::button('Nova Empresa', ['value' => Url::to(['site/test']), 'class'=>'btn btn-success', 'id' => 'modalCreateCompany']) ?>
-    </div>
     <div class="row">
         <div class="col-xs-12">
                 <div class="container text-center">

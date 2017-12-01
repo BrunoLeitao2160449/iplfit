@@ -9,48 +9,24 @@ use yii\helpers\Url;
 $this->title = 'IPLFit';
 ?>
 
-<?php
-Modal::begin([
-    'header' => '<h4>Login</h4>',
-    'id' => 'modal',
-    'size' => 'modal-lg',
-]);
-
-echo "<div id='modalContent'></div>";
-
-Modal::end();
-?>
-
 
 <div  style="background: url('../web/images/food5.jpg'); min-height: 800px;">
     <div class="container">
 
-        <p style="margin-top: 100px; text-align: center">
-            <a>
-                <?= Html::button('Login', ['value' => Url::to(['site/login']), 'class'=>'btn btn-success btn-lg', 'id' => 'modalCreateCompany']) ?>
-            </a>
-
-            <a >
-                <button type="button" class="btn btn-info btn-lg">
-                    <b style="font-size: large"> Signup </b>
-                </button>
-            </a>
-        </p>
-
-        <p style="margin-top: 20px; font-size: 65px; font-weight: 700; text-align: center; color: #151515"> Lose Weight with
-            <span style="margin-top: 150px; font-size: 65px; font-weight: 700; text-align: center; color: #C84403">
+        <p style="margin-top: 10%; font-size: 65px; font-weight: 700; text-align: center; color: #151515"> Lose Weight with
+            <span style="font-size: 65px; font-weight: 700; text-align: center; color: #C84403">
                 IPLFit
             </span> !</p>
-        <h2 class="bigpixi_head"></h2>
-        <h3 style="text-align: center; font-weight: 700; font-size: 30px;color: #151515">The fastest, easiest to use calorie counter app. </h3>
+        <h2 class="bigpixi_head" style="margin-top: -2%"></h2>
+        <h3 style="text-align: center; font-weight: 700; font-size: 30px;color: #151515; margin-top: 8%">The fastest, easiest to use calorie counter app. </h3>
 
         <div id="services" class="container-fluid tbpadding text-center ">
             <div class="row">
                 <img src='../web/images/playButton.png' width="50px">
-                <h4 style="font-weight: 700; font-size: 33px; color: #151515">Download now the APP</h4>
-                <a style="font-weight: 700; font-size: 33px; color: black;">
+                <h4 style="font-weight: 700; font-size: 33px; color: #151515; margin-top: 3%;">Download now the APP</h4>
+                <h4 style="margin-top: 1%; font-weight: 700; font-size: 33px; color: black;">
                         "IPLFit"
-                </a>
+                </h4>
 
                 <br>
                 <br>

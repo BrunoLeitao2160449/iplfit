@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -7,6 +8,20 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+?>
+
+<?php
+
+Modal::begin([
+    'header' => '<h4>Warning! <br> <br> Are you sure you want to delete this user and all your dependencies? </h4>',
+    'id' => 'modal',
+    'size' => 'modal-s',
+]);
+
+echo "<div id='modalContent'></div>";
+
+Modal::end();
+
 ?>
 
 <div class="row">
@@ -18,7 +33,25 @@ use yii\helpers\Url;
     </div>
 </div>
 
-<table class="table">
+<div class="container text-center" style="width: 60%; margin-top: 2%">
+
+    <div class="input-group input-group-lg">
+
+
+        <input type="text" maxlength="200" class="form-control" placeholder="Email">
+
+        <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="nlk-search-submit">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+
+            </span>
+
+    </div>
+
+</div>
+
+<table class="table" style="margin-top: 5%">
     <thead>
     <tr>
         <th>Id</th>
@@ -45,13 +78,8 @@ use yii\helpers\Url;
                         <b > View </b>
                     </button>
                 </a>
-                <a href="<?=Url::toRoute(["user/delete", "id" => $record->Id])?>">
-                    <button type="button" class="btn btn-danger btn-xs">
-                        <b> Delete </b>
-                    </button>
-                </a>
-                <!--<router-link class="btn btn-warning btn-xs" v-bind:to="{name: 'product-edit', params: {product_id: product.id}}">Edit</router-link>
-                <router-link class="btn btn-danger btn-xs" v-bind:to="{name: 'product-delete', params: {product_id: product.id}}">Delete</router-link>-->
+
+                <?= Html::button('delete', ['value' => Url::to(['user/delete?id='.$record->Id.'&response='.null]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
             </td>
         </tr>
     <?php }?>

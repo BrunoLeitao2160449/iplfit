@@ -3,7 +3,7 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
-use common\models\ComplementoUser;
+use common\models\Complemento;
 
 /**
  * Signup form
@@ -86,7 +86,7 @@ class SignupForm extends Model
             $authorRole = $auth->getRole('user');
             $auth->assign($authorRole, $user->getId());
 
-            $complement = new ComplementoUser();
+            $complement = new Complemento();
             $complement->id_user = $user->getId();
             $complement->nome = $this->nome;
             $complement->data_nasc = $this->data_nasc;
