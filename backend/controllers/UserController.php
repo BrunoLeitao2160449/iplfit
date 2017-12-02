@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Auth;
+use common\models\AuthAssignment;
 use common\models\Complemento;
 use Yii;
 use common\models\User;
@@ -58,7 +59,7 @@ class UserController extends Controller
     public function actionView($id)
     {
 
-        return $this->render('teste', [
+        return $this->renderAjax('view', [
             'model' => User::findOne(['id' => $id]),
         ]);
     }
@@ -71,6 +72,8 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
+
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -90,12 +93,15 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $ok="hello";
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            var_dump($ok);
+            //return $this->redirect(['index']);
         } else {
-            return $this->render('update', [
-                'model' => $model,
+            return $this->renderAjax('update', [
+                'model' => $model, 'ok' => $ok,
+
             ]);
         }
     }
@@ -120,7 +126,7 @@ class UserController extends Controller
 
                     $ComplementoUser->delete();
 
-                    $auth = Auth::find()->where(['user_id' => $id])->one();
+                    $auth = AuthAssignment::find()->where(['user_id' => $id])->one();
 
                     $auth->delete();
 
@@ -135,25 +141,6 @@ class UserController extends Controller
             }
         }
 
-    }
-
-    public function actionModalDelete($id, $response)
-    {
-        if ($id != null && $response != null) {
-            if ($response == "yes") {
-                $ComplementoUser = Complemento::find()->where(['id_user' => $id])->one();
-
-                $ComplementoUser->delete();
-
-                $this->findModel($id)->delete();
-
-                return $this->redirect(['index']);
-            } else {
-                return $this->redirect(['index']);
-            }
-        } else {
-            return $this->redirect(['index']);
-        }
     }
 
     /**

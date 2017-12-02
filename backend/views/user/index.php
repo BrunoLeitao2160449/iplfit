@@ -24,6 +24,22 @@ Modal::end();
 
 ?>
 
+<?php
+
+Modal::begin([
+    'header' => '<h4>View User</h4>',
+    'id' => 'modal_view',
+    'size' => 'modal-lg',
+]);
+
+echo "<div id='modalContent'></div>";
+
+Modal::end();
+
+?>
+
+
+
 <div class="row">
     <div class="col-xs-12">
         <div class="container text-center">
@@ -73,11 +89,9 @@ Modal::end();
                 <?= $record->email ?>
             </td>
             <td>
-                <a href="<?=Url::toRoute(["user/view", "id" => $record->Id])?>">
-                    <button type="button" class="btn btn-warning btn-xs">
-                        <b > View </b>
-                    </button>
-                </a>
+                <?= Html::button('View', ['value' => Url::to(['user/view?id='.$record->Id]), 'class'=>'btn btn-warning btn-xs', 'id' => 'modalBtnView']) ?>
+
+                <?= Html::button('Edit', ['value' => Url::to(['user/update?id='.$record->Id]), 'class'=>'btn btn-primary btn-xs', 'id' => 'modalBtnView']) ?>
 
                 <?= Html::button('delete', ['value' => Url::to(['user/delete?id='.$record->Id.'&response='.null]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
             </td>

@@ -198,7 +198,16 @@ class User extends ActiveRecord implements IdentityInterface
         }
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getComplemento() {
+
         return $this->hasOne(Complemento::className(), ['id_user' => 'id']);
+    }
+
+    public function getAuth() {
+
+        return $this->hasOne(AuthAssignment::className(), ['user_id' => 'id']);
     }
 }

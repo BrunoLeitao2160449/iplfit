@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -14,8 +15,27 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="user-form">
+
+        <?php $form = ActiveForm::begin(); ?>
+
+        <?= $form->field($model, 'username')->textInput();?>
+
+        <?= $form->field($model->getComplemento()->one(), 'nome')->textInput() ?>
+
+        <?= $form->field($model, 'email')->textInput() ?>
+
+        <?= $form->field($model->getComplemento()->one(), 'data_nasc')->textInput()->label('Data de Nascimento') ?>
+
+        <?= $form->field($model->getAuth()->one(), 'item_name')->dropDownList(['user', 'admin'])->label('Type of User') ?>
+
+
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
 
 </div>

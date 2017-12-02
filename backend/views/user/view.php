@@ -1,42 +1,90 @@
 <?php
 
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use common\models\Complemento;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\User */
-
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="user-view">
+    <?php
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    if(empty($model->complemento->obs)){ ?>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+        <?=
+            DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'id',
+                    'username',
+                    [
+                        'label' => 'Nome',
+                        'value' => $model->complemento->nome,
+                    ],
+                    'email:email',
+                    [
+                        'label' => 'Data de Nascimento',
+                        'value' => $model->complemento->data_nasc,
+                    ],
+                    [
+                        'label' => 'Height',
+                        'value' => $model->complemento->altura,
+                    ],
+                    [
+                        'label' => 'Weight',
+                        'value' => $model->complemento->peso,
+                    ],
+                    [
+                        'label' => 'Goal Weight',
+                        'value' => $model->complemento->meta_peso,
+                    ],
+                ],
+            ]);
+        ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'username',
-            'email:email',
-            [
-              'label' => 'Nome',
-              'value' => $model->complemento->nome,
-            ],
-        ],
-    ]) ?>
+    <?php
+    } else {?>
+
+        <?=
+            DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'id',
+                    'username',
+                    [
+                        'label' => 'Nome',
+                        'value' => $model->complemento->nome,
+                    ],
+                    'email:email',
+                    [
+                        'label' => 'Data de Nascimento',
+                        'value' => $model->complemento->data_nasc,
+                    ],
+                    [
+                        'label' => 'Height',
+                        'value' => $model->complemento->altura,
+                    ],
+                    [
+                        'label' => 'Weight',
+                        'value' => $model->complemento->peso,
+                    ],
+                    [
+                        'label' => 'Goal Weight',
+                        'value' => $model->complemento->meta_peso,
+                    ],
+
+                    [
+                        'label' => 'Observations',
+                        'value' => $model->complemento->obs,
+                    ],
+                ],
+            ]);
+        ?>
+    <?php
+    }
+    ?>
+
+
 
 </div>
