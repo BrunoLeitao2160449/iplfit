@@ -66,4 +66,13 @@ return array (
       '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
     ),
   ),
+  'cakebake/yii2-bootstrap-select' => 
+  array (
+    'name' => 'cakebake/yii2-bootstrap-select',
+    'version' => '2.0.1.0',
+    'alias' => 
+    array (
+      '@cakebake/bootstrap/select' => $vendorDir . '/cakebake/yii2-bootstrap-select',
+    ),
+  ),
 );

@@ -91,7 +91,7 @@ class UserController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id, $update, $role)
+    public function actionView($update, $role, $id)
     {
         if($update == 'yes'){
 
@@ -101,14 +101,12 @@ class UserController extends Controller
 
             if($role == 'admin'){
                 $auth->item_name = 'user';
-            } else {
+            }
+
+            if($role == 'user'){
                 $auth->item_name = 'admin';
             }
             $auth->save(false);
-
-            /*echo "<script type=\"text/javascript\">";
-            echo "$(\"#modal_view\").modal('hide')";
-            echo "</script>";*/
 
             return $this->renderAjax('view', [
                 'model' => $model,

@@ -95,7 +95,7 @@ use common\models\Complemento;
     ?>
 
     <div>
-        <?= Html::button('Change Permission Role', ['value' => Url::to(['user/view?id='.$model->id.'&update=yes'.'&role='.$model->auth->item_name]), 'class'=>'btn btn-primary btn-sm', 'id' => 'modalBtnView']); ?>
+        <?= Html::button('Change Permission Role', ['value' => Url::to(['user/view?update=yes&role='.$model->auth->item_name.'&id='.$model->id]), 'class'=>'btn btn-primary btn-sm', 'id' => 'modalBtnView']); ?>
     </div>
 
 

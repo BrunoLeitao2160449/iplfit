@@ -35,6 +35,7 @@ class ComposerStaticInit2d1c2910e0e7816440479aa24d13844a
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
+            'cakebake\\bootstrap\\select\\' => 26,
         ),
         'W' => 
         array (
@@ -124,6 +125,10 @@ class ComposerStaticInit2d1c2910e0e7816440479aa24d13844a
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'cakebake\\bootstrap\\select\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cakebake/yii2-bootstrap-select',
         ),
         'Webmozart\\Assert\\' => 
         array (

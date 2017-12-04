@@ -6,6 +6,16 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
+cakebake\bootstrap\select\BootstrapSelectAsset::register($this, [
+    'selector' => '.selectpicker', //The jQuery selector (all select forms by default)
+    'menuArrow' => true, //You can also show the tick icon on single select
+    'tickIcon' => false, //The bootstrap menu arrow can be added
+    'selectpickerOptions' => [ //available bootstrap-select data options @see http://silviomoreto.github.io/bootstrap-select/3/#options
+        'size' => 3, //example option @see http://silviomoreto.github.io/bootstrap-select/3/#options
+        'width' => '50%', //example option @see http://silviomoreto.github.io/bootstrap-select/3/#options
+    ],
+]);
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -39,8 +49,6 @@ Modal::end();
 
 ?>
 
-
-
 <div class="row">
     <div class="col-xs-12">
         <div class="container text-center">
@@ -54,21 +62,18 @@ Modal::end();
 
     <div class="input-group input-group-lg">
 
-        <input type="text" maxlength="200" class="form-control" id="pesquisa_text">
-
-        <div class="pesquisa-control" data-info="<?= Url::toRoute(['user/searchmail']); ?>"></div>
         <span class="input-group-btn">
 
-                <button class="btn btn-primary" type="button" id="nlk-search-submit">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
+        </span>
 
-            </span>
+        <input type="text" maxlength="200" class="form-control" id="pesquisa_text" placeholder="Search">
 
-        <select id="pesquisa_como" class="selectpicker">
-            <option value="ID">ID</option>
-            <option value="Username">Username</option>
-            <option value="Email">Email</option>
+        <div class="pesquisa-control" data-info="<?= Url::toRoute(['user/searchmail']); ?>"></div>
+
+        <select id="pesquisa_como" class="selectpicker" data-style="btn-primary">
+            <option value="ID">ID &nbsp</option>
+            <option value="Username">Username &nbsp</option>
+            <option value="Email">Email &nbsp</option>
         </select>
 
     </div>
@@ -84,7 +89,7 @@ Modal::end();
         <th class="col-sm-2">Actions</th>
     </tr>
     </thead>
-    <div id="pesquisa_button_view" data-info="<?= Url::to(['user/view?id=']) ?>" />
+    <div id="pesquisa_button_view" data-info="<?= Url::to(['user/view?update=no&role='.null.'&id=']) ?>" />
     <div id="pesquisa_button_delete" data-info="<?= Url::to(['user/delete?id=']) ?>" />
     <tbody id="table_search_body">
     <?php foreach ( $data as $key => $record) {?>
@@ -99,7 +104,7 @@ Modal::end();
                 <?= $record->email ?>
             </td>
             <td>
-                <?= Html::button('View', ['value' => Url::to(['user/view?id=' . $record->Id . '&update=no' . '&role='.null]), 'class'=>'btn btn-warning btn-xs', 'id' => 'modalBtnView']) ?>
+                <?= Html::button('View', ['value' => Url::to(['user/view?update=no&role='.null.'&id=' . $record->Id]), 'class'=>'btn btn-warning btn-xs', 'id' => 'modalBtnView']) ?>
 
                 <?= Html::button('delete', ['value' => Url::to(['user/delete?id='.$record->Id.'&response='.null]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
             </td>
