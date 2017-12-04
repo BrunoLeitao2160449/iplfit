@@ -10,6 +10,7 @@ use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -92,16 +93,20 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model =  User::findOne($id);
         $ok="hello";
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            var_dump($ok);
-            //return $this->redirect(['index']);
+
+             if ($model->validate()) {
+
+                $model->save(false);
+                return $this->redirect(['index']);
+            }
+
         } else {
             return $this->renderAjax('update', [
                 'model' => $model, 'ok' => $ok,
-
             ]);
         }
     }
@@ -157,5 +162,23 @@ class UserController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionSearchmail($como, $testsearch){
+
+        switch ($como) {
+            case "ID":
+                $find_result = User::find()->where(['like', 'id', $testsearch])->all();
+                break;
+            case "Username":
+                $find_result = User::find()->where(['like', 'username', $testsearch])->all();
+                break;
+            case 'Email':
+                $find_result = User::find()->where(['like', 'email', $testsearch])->all();
+                break;
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $find_result;
     }
 }
