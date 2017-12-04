@@ -39,20 +39,6 @@ Modal::end();
 
 ?>
 
-<?php
-
-Modal::begin([
-    'header' => '<h4>Edit User</h4>',
-    'id' => 'modal_edit',
-    'size' => 'modal-lg',
-]);
-
-echo "<div id='modalContent'></div>";
-
-Modal::end();
-
-?>
-
 
 
 <div class="row">
@@ -64,78 +50,7 @@ Modal::end();
     </div>
 </div>
 
-<!--<div class="container text-center" style="width: 60%">
-
-    <div class="input-group input-group-lg">
-
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="adv-search-drop">
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                </button>
-
-                <ul class="dropdown-menu" id="pesquisa_como">
-                    <li>
-                        <a role="button" >
-                            ID
-                        </a>
-                    </li>
-                    <li>
-                        <a role="button">
-                            Username
-                        </a>
-                    </li>
-                    <li>
-                        <a role="button">
-                            Email
-                        </a>
-                    </li>
-                </ul>
-
-            </span>
-
-        <input type="text" maxlength="200" class="form-control" placeholder="Name" >
-
-        <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="nlk-search-submit">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-
-            </span>
-
-    </div>
-
-</div>-->
-
 <div class="container text-center" style="width: 60%; margin-top: 2%">
-
-    <!--<span class="input-group-btn">
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="adv-search-drop">
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                </button>
-
-                <ul class="dropdown-menu">
-                    <li>
-                        <a role="button" >
-                            ID
-                        </a>
-                    </li>
-                    <li>
-                        <a role="button">
-                            Name
-                        </a>
-                    </li>
-                    <li>
-                        <a role="button">
-                            Username
-                        </a>
-                    </li>
-                    <li>
-                        <a role="button">
-                            Email
-                        </a>
-                    </li>
-                </ul>
-    </span>-->
 
     <div class="input-group input-group-lg">
 
@@ -150,7 +65,7 @@ Modal::end();
 
             </span>
 
-        <select id="pesquisa_como">
+        <select id="pesquisa_como" class="selectpicker">
             <option value="ID">ID</option>
             <option value="Username">Username</option>
             <option value="Email">Email</option>
@@ -170,7 +85,6 @@ Modal::end();
     </tr>
     </thead>
     <div id="pesquisa_button_view" data-info="<?= Url::to(['user/view?id=']) ?>" />
-    <div id="pesquisa_button_edit" data-info="<?= Url::to(['user/update?id=']) ?>" />
     <div id="pesquisa_button_delete" data-info="<?= Url::to(['user/delete?id=']) ?>" />
     <tbody id="table_search_body">
     <?php foreach ( $data as $key => $record) {?>
@@ -185,9 +99,7 @@ Modal::end();
                 <?= $record->email ?>
             </td>
             <td>
-                <?= Html::button('View', ['value' => Url::to(['user/view?id='.$record->Id]), 'class'=>'btn btn-warning btn-xs', 'id' => 'modalBtnView']) ?>
-
-                <?= Html::button('Edit', ['value' => Url::to(['user/update?id='.$record->Id]), 'class'=>'btn btn-primary btn-xs', 'id' => 'modalBtnEdit']) ?>
+                <?= Html::button('View', ['value' => Url::to(['user/view?id=' . $record->Id . '&update=no' . '&role='.null]), 'class'=>'btn btn-warning btn-xs', 'id' => 'modalBtnView']) ?>
 
                 <?= Html::button('delete', ['value' => Url::to(['user/delete?id='.$record->Id.'&response='.null]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
             </td>

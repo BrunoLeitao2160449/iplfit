@@ -25,7 +25,6 @@ $(function(){
 
                     var linha = row.clone();
 
-
                     $('#row_id', linha).text(resultado.id);
                     $('#row_user', linha).text(resultado.username);
                     $('#row_email', linha).text(resultado.email);
@@ -34,16 +33,7 @@ $(function(){
                     $('#modalBtnEdit', linha).val($('#pesquisa_button_edit').data("info")+resultado.id);
                     $('#modalBtn', linha).val($('#pesquisa_button_delete').data("info")+resultado.id+'&response=');
 
-
-
                     $('#table_search').append(linha);
-
-                    /*var $row = $('<tr>').append(
-                        $('<td>').text(resultado.id),
-                        $('<td>').text(resultado.username),
-                        $('<td>').text(resultado.email)
-                        $('<td>').text()
-                    ).appendTo('#table_search');*/
                 });
 
         });

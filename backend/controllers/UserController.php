@@ -5,12 +5,15 @@ namespace backend\controllers;
 use common\models\Auth;
 use common\models\AuthAssignment;
 use common\models\Complemento;
+use backend\models\EdituserForm;
 use Yii;
 use common\models\User;
 use yii\web\Controller;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -26,7 +29,38 @@ class UserController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST', 'GET'],
+                    'delete' => ['POST','GET'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'searchmail', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['searchmail'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];
@@ -57,12 +91,34 @@ class UserController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id, $update, $role)
     {
+        if($update == 'yes'){
 
-        return $this->renderAjax('view', [
-            'model' => User::findOne(['id' => $id]),
-        ]);
+            $model = User::findOne(['id' => $id]);
+
+            $auth = AuthAssignment::findOne(['user_id' => $id]);
+
+            if($role == 'admin'){
+                $auth->item_name = 'user';
+            } else {
+                $auth->item_name = 'admin';
+            }
+            $auth->save(false);
+
+            /*echo "<script type=\"text/javascript\">";
+            echo "$(\"#modal_view\").modal('hide')";
+            echo "</script>";*/
+
+            return $this->renderAjax('view', [
+                'model' => $model,
+            ]);
+
+        } else {
+            return $this->renderAjax('view', [
+                'model' => User::findOne(['id' => $id]),
+            ]);
+        }
     }
 
     /**
@@ -85,28 +141,23 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Updates an existing User model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
-        $model =  User::findOne($id);
-        $ok="hello";
+        $model_edit = new EdituserForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-             if ($model->validate()) {
-
-                $model->save(false);
-                return $this->redirect(['index']);
+        /*if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->redirect('../../web/');
+                }
             }
+        }*/
 
+        if ($model_edit->load(Yii::$app->request->post())) {
+            return $this->redirect(['index']);
         } else {
             return $this->renderAjax('update', [
-                'model' => $model, 'ok' => $ok,
+                'model' => $model_edit,
             ]);
         }
     }

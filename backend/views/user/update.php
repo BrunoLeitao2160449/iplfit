@@ -17,23 +17,27 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <div class="user-form">
 
-        <?php $form = ActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-        <?= $form->field($model, 'username')->textInput();?>
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-        <?= $form->field($model->getComplemento()->one(), 'nome')->textInput() ?>
+        <?= $form->field($model, 'password')->passwordInput() ?>
+
+        <?= $form->field($model, 'nome')->textInput()?>
 
         <?= $form->field($model, 'email')->textInput() ?>
 
-        <?= $form->field($model->getComplemento()->one(), 'data_nasc')->textInput()->label('Data de Nascimento') ?>
+        <?= $form->field($model,'data_nasc')->textInput(['type' => 'date', 'format' => 'php:Y-m-d']) ?>
 
-        <?= $form->field($model->getAuth()->one(), 'item_name')->dropDownList(['user', 'admin'])->label('Type of User') ?>
+        <?= $form->field($model, 'altura')->textInput(['type' => 'decimal']) ?>
 
+        <?= $form->field($model, 'peso')->textInput(['type' => 'decimal']) ?>
+
+        <?= $form->field($model, 'meta_peso')->textInput(['type' => 'decimal']) ?>
 
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
         </div>
-
         <?php ActiveForm::end(); ?>
 
     </div>

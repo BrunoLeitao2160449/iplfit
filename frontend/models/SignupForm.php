@@ -75,19 +75,22 @@ class SignupForm extends Model
     {
         if($this->validate()) {
             $user = new User();
+            //$user = User::find()->where(['id' => 3])->one();
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save(false);
 
-            // the following three lines were added:
+            //the following three lines were added:
             $auth = \Yii::$app->authManager;
             $authorRole = $auth->getRole('user');
             $auth->assign($authorRole, $user->getId());
 
             $complement = new Complemento();
+            //$complement = Complemento::find()->where(['id_user' => 3])->one();
             $complement->id_user = $user->getId();
+            //$complement->id_user = 3;
             $complement->nome = $this->nome;
             $complement->data_nasc = $this->data_nasc;
             $complement->peso = $this->peso;

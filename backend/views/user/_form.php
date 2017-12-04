@@ -13,15 +13,24 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'id')->textInput() ?>
+
     <?= $form->field($model, 'username')->textInput() ?>
 
-    <?= $form->field($model->getComplemento()->one(), 'nome')->textInput() ?>
+    <?= $form->field($model, 'auth_key')->textInput() ?>
+
+    <?= $form->field($model, 'password_hash')->textInput() ?>
+
+    <?= $form->field($model, 'password_reset_token')->textInput() ?>
 
     <?= $form->field($model, 'email')->textInput() ?>
 
-    <?= $form->field($model->getComplemento()->one(), 'data_nasc')->textInput()->label('Data de Nascimento') ?>
+    <?= $form->field($model, 'status')->textInput() ?>
 
-    <?= $form->field($model->getAuth()->one(), 'item_name')->dropDownList(['user', 'admin'])->label('Type of User') ?>
+    <?= $form->field($model, 'created_at')->textInput() ?>
+
+    <?= $form->field($model, 'updated_at')->textInput() ?>
+
 
 
     <div class="form-group">
