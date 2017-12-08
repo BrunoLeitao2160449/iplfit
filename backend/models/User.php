@@ -29,7 +29,7 @@ class User extends Model
             return null;
         }
     }
-
+ddd
     public function deleteUser($id){
 
         $client = new Client();
