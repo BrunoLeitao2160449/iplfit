@@ -19,6 +19,8 @@ cakebake\bootstrap\select\BootstrapSelectAsset::register($this, [
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title="Users Manager";
 ?>
 
 <?php

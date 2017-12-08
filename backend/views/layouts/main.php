@@ -35,11 +35,18 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Users Manager', 'url' => ['/site/usersfind']],
-        ['label' => 'Users', 'url' => ['/user/index']],
+
+    $menuItems[] = [
+        'label' => 'Tips',
+        'items' => [
+            ['label' => 'Health', 'url' => ['/site/index']],
+            ['label' => 'Food / Recipe', 'url' => ['/site/usersfind']],
+            ['label' => 'Sport', 'url' => ['/site/usersfind']],
+        ],
     ];
+
+    $menuItems[] = ['label' => 'Users Manager', 'url' => ['/user/index']];
+
     if (!Yii::$app->user->isGuest) {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
