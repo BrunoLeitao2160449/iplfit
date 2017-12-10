@@ -12,6 +12,7 @@ namespace backend\controllers;
 use common\models\Tips;
 use common\models\TipsChannel;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
@@ -25,6 +26,37 @@ class TipsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST','GET'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'delete', 'searchtitle'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['searchtitle'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

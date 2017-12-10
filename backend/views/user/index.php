@@ -23,6 +23,8 @@ cakebake\bootstrap\select\BootstrapSelectAsset::register($this, [
 $this->title="Users Manager";
 ?>
 
+<div class="container">
+
 <?php
 
 Modal::begin([
@@ -114,3 +116,5 @@ Modal::end();
     <?php }?>
     </tbody>
 </table>
+
+</div>

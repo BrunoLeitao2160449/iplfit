@@ -19,6 +19,8 @@ cakebake\bootstrap\select\BootstrapSelectAsset::register($this, [
 $this->title=$title;
 ?>
 
+<div class="container">
+
 <?php
 
     Modal::begin([
@@ -98,7 +100,7 @@ Modal::end();
                     <div class="card-head panel-heading" id="row_title"> <?= $record->title ?> <span class="pull-right"></spant></span></div>
                     <div class="card-body panel-body" style="text-align: justify" id="row_content"> <?= $record->content ?> </div>
                     <div class="card-foot panel-footer">
-                        <?= Html::button('Edit', ['value' => Url::to(['tips/update?type' . $title . '&id=' . $record->id]), 'class'=>'btn btn-primary btn-xs', 'id' => 'modalBtnEditTip']) ?>
+                        <?= Html::button('Edit', ['value' => Url::to(['tips/update?type=' . $title . '&id=' . $record->id]), 'class'=>'btn btn-primary btn-xs', 'id' => 'modalBtnEditTip']) ?>
 
                         <?= Html::button('Delete', ['value' => Url::to(['tips/delete?response=' . null . '&type=' . $title . '&id=' . $record->id]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
                     </div>
@@ -106,4 +108,6 @@ Modal::end();
             <?php }?>
         </div>
     </div>
+</div>
+
 </div>

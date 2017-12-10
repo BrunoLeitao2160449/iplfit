@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/UsersControl.css',
         'css/tips.css',
+        'css/template.css',
     ];
     public $js = [
         'js/modalFunc.js',

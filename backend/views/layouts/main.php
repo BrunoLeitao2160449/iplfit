@@ -33,7 +33,8 @@ AppAsset::register($this);
 
         NavBar::begin([
             'brandLabel' => Html::img('@web/images/fitlogo.png', ['alt'=>'IPLFit', 'width'=>35, 'height'=>31 ]),
-            'brandUrl' => ['/user/index'],
+            //'brandUrl' => ['../../frontend/web/'],
+            'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top',
             ],
@@ -53,7 +54,8 @@ AppAsset::register($this);
     else{
         NavBar::begin([
             'brandLabel' => Html::img('@web/images/fitlogo.png', ['alt'=>'IPLFit', 'width'=>35, 'height'=>31 ]),
-            'brandUrl' => ['../../frontend/web/'],
+            //'brandUrl' => ['../../frontend/web/'],
+            'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top',
             ],
@@ -77,13 +79,11 @@ if (!Yii::$app->user->isGuest) {
     ]);
     NavBar::end();
     ?>
-    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
 </div>
 
 <footer style="background-color: #151515; position: fixed; bottom: 0; left: 0; right: 0; height: 35px;text-align: center; color: #CCC ">
