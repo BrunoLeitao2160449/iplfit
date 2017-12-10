@@ -30,11 +30,50 @@ $(function(){
                     $('#row_email', linha).text(resultado.email);
 
                     $('#modalBtnView', linha).val($('#pesquisa_button_view').data("info")+resultado.id);
-                    $('#modalBtnEdit', linha).val($('#pesquisa_button_edit').data("info")+resultado.id);
+                    //$('#modalBtnEdit', linha).val($('#pesquisa_button_edit').data("info")+resultado.id);
                     $('#modalBtn', linha).val($('#pesquisa_button_delete').data("info")+resultado.id+'&response=');
 
                     $('#table_search').append(linha);
                 });
+
+        });
+    });
+});
+
+$(function(){
+
+    var row = null;
+
+    $('#pesquisa_text').on('input',function(){
+
+        if (row == null)
+            row = $('#box_search:first').clone();
+
+        $('#blocks_search_body').empty();
+
+        $.ajax($('.pesquisa-control').data("info"),
+            {
+
+                method: 'GET',
+                type: 'json',
+                data:
+                    {
+                        "testsearch" : $("#pesquisa_text").val(),
+                    },
+            }).then(function(result_search){
+
+            $.each(result_search, function (i, resultado) {
+
+                var linha = row.clone();
+
+                $('#row_title', linha).text(resultado.title);
+                $('#row_content', linha).text(resultado.content);
+
+                $('#modalBtnView', linha).val($('#pesquisa_button_view').data("info")+resultado.id);
+                $('#modalBtn', linha).val($('#pesquisa_button_delete').data("info")+resultado.id+'&response=');
+
+                $('#table_search').append(linha);
+            });
 
         });
     });

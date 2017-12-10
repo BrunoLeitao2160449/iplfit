@@ -12,7 +12,7 @@ use Yii;
  *
  * @property Tips[] $tips
  */
-class Tipschannel extends \yii\db\ActiveRecord
+class TipsChannel extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -49,6 +49,6 @@ class Tipschannel extends \yii\db\ActiveRecord
      */
     public function getTips()
     {
-        return $this->hasMany(Tips::className(), ['id_channel' => 'id']);
+        return $this->hasMany(Tips::className(), ['id_channel' => 'id'])->inverseOf('idChannel');
     }
 }

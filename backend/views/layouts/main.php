@@ -28,26 +28,40 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
 
-    $menuItems[] = [
-        'label' => 'Tips',
-        'items' => [
-            ['label' => 'Health', 'url' => ['/site/index']],
-            ['label' => 'Food / Recipe', 'url' => ['/site/usersfind']],
-            ['label' => 'Sport', 'url' => ['/site/usersfind']],
-        ],
-    ];
+    if(Yii::$app->user->identity->auth->item_name == "admin"){
 
-    $menuItems[] = ['label' => 'Users Manager', 'url' => ['/user/index']];
+        NavBar::begin([
+            'brandLabel' => Html::img('@web/images/fitlogo.png', ['alt'=>'IPLFit', 'width'=>35, 'height'=>31 ]),
+            'brandUrl' => ['/user/index'],
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);
 
-    if (!Yii::$app->user->isGuest) {
+        $menuItems[] = [
+            'label' => 'Tips',
+            'items' => [
+                ['label' => 'Health', 'url' => ['/tips/index', 'type' => 'Health']],
+                ['label' => 'Recipes', 'url' => ['/tips/index', 'type' => 'Recipes']],
+                ['label' => 'Sport', 'url' => ['/tips/index', 'type' => 'Sport']],
+            ],
+        ];
+
+        $menuItems[] = ['label' => 'Users Manager', 'url' => ['/user/index']];
+    }
+    else{
+        NavBar::begin([
+            'brandLabel' => Html::img('@web/images/fitlogo.png', ['alt'=>'IPLFit', 'width'=>35, 'height'=>31 ]),
+            'brandUrl' => ['../../frontend/web/'],
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);
+
+    }
+
+if (!Yii::$app->user->isGuest) {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

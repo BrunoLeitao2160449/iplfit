@@ -56,6 +56,6 @@ class Tips extends \yii\db\ActiveRecord
      */
     public function getIdChannel()
     {
-        return $this->hasOne(TipsChannel::className(), ['id' => 'id_channel']);
+        return $this->hasOne(TipsChannel::className(), ['id' => 'id_channel'])->inverseOf('tips');
     }
 }
