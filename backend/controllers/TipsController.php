@@ -14,6 +14,7 @@ use common\models\TipsChannel;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\web\Response;
 
 class TipsController extends Controller
 {
@@ -54,7 +55,7 @@ class TipsController extends Controller
         }
     }
 
-    public function actionUpdate($id, $type)
+    public function actionUpdate($type, $id)
     {
         $data = Tips::find()->where(['id' => $id])->one();
 
@@ -67,7 +68,7 @@ class TipsController extends Controller
         }
     }
 
-    public function actionDelete($id, $response, $type)
+    public function actionDelete($response, $type, $id)
     {
         if($id != null && $response == null)
         {
