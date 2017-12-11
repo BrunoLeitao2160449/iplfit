@@ -21,3 +21,9 @@ $(function(){
         $('#modal_create_tip').modal('show').find('#modalContent').load($(this).attr('value'));
     });
 });
+
+$(function(){
+    $(this).on('click', '#modalBtnAddFood', function () {
+        $('#modal_create_food').modal('show').find('#modalContent').load($(this).attr('value'));
+    });
+});

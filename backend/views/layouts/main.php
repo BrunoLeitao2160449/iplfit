@@ -49,6 +49,8 @@ AppAsset::register($this);
             ],
         ];
 
+        $menuItems[] = ['label' => 'Food Manager', 'url' => ['/food/index']];
+
         $menuItems[] = ['label' => 'Users Manager', 'url' => ['/user/index']];
     }
     else{
