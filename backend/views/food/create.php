@@ -6,7 +6,8 @@ use yii\widgets\ActiveForm;
 
 <div class="create-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'create-food-form']); ?>
+
 
     <?= $form->field($data, 'nome')->textInput(['autofocus' => true])->label('Nome') ?>
 
@@ -20,6 +21,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('Create', ['class' => 'btn btn-success', 'name' => 'create-button']) ?>
+
     </div>
     <?php ActiveForm::end(); ?>
 

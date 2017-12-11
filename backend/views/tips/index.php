@@ -38,7 +38,7 @@ $this->title=$title;
 <?php
 
 Modal::begin([
-    'header' => '<h4>Edit Tip</h4>',
+    'header' => '<h4>EditForm Tip</h4>',
     'id' => 'modal_edit_tip',
     'size' => 'modal-lg',
 ]);
@@ -77,7 +77,9 @@ Modal::end();
 
     <input type="text" maxlength="200" class="form-control input-lg" id="pesquisa_text_title" placeholder="Search by Title">
 
-    <div class="pesquisa-control-title" data-info="<?= Url::toRoute(['user/searchtitle']); ?>"></div>
+    <div id="pesquisa_text_type"></div>
+
+    <div class="pesquisa-control-title" data-info="<?= Url::toRoute(['tips/searchtitle']); ?>"></div>
 
 </div>
 

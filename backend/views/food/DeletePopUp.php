@@ -12,7 +12,7 @@ use yii\helpers\Url;
 
 <?php
 
-    echo Html::a('Yes', ['tips/delete', "id" => $id, "response" => "yes", 'type' => $type], ['class' => 'btn btn-danger']);
+    echo Html::a('Yes', ['food/delete', "id" => $id, "response" => "yes"], ['class' => 'btn btn-danger']);
 
-    echo Html::a('No', ['tips/delete', "id" => $id, "response" => "no", 'type' => $type], ['class' => 'btn btn-primary', 'style' => 'margin-left: 1%']);
+    echo Html::a('No', ['food/delete', "id" => $id, "response" => "no"], ['class' => 'btn btn-primary', 'style' => 'margin-left: 1%']);
 ?>

@@ -96,27 +96,6 @@ class UserController extends Controller
         }
     }
 
-    /*public function actionUpdate($id)
-    {
-        $model_edit = new EdituserForm();
-
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->redirect('../../web/');
-                }
-            }
-        }
-
-        if ($model_edit->load(Yii::$app->request->post())) {
-            return $this->redirect(['index']);
-        } else {
-            return $this->renderAjax('update', [
-                'model' => $model_edit,
-            ]);
-        }
-    }*/
-
 
     public function actionDelete($id, $response)
     {
@@ -134,7 +113,7 @@ class UserController extends Controller
 
                     $auth->delete();
 
-                    //$this->findModel($id)->delete();
+                    $this->findModel($id)->delete();
 
                     return $this->redirect(['index']);
                 } else {
@@ -146,15 +125,6 @@ class UserController extends Controller
         }
 
     }
-
-    /*protected function findModel($id)
-    {
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }*/
 
     public function actionSearchmail($como, $testsearch){
 

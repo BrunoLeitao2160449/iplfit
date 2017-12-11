@@ -10,6 +10,7 @@ namespace backend\controllers;
 
 
 use backend\models\CreateForm;
+use backend\models\EditForm;
 use common\models\Alimentos;
 use common\models\AlimentoApi;
 use Yii;
@@ -31,7 +32,7 @@ class FoodController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'create', 'update', 'delete', 'searchtitle'],
+                'only' => ['index', 'create', 'update', 'delete', 'searchfood'],
                 'rules' => [
                     [
                         'actions' => ['index'],
@@ -54,7 +55,7 @@ class FoodController extends Controller
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' => ['searchtitle'],
+                        'actions' => ['searchfood'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
@@ -72,61 +73,14 @@ class FoodController extends Controller
 
     public function actionCreate()
     {
-        /*$data = new Alimentos();
-
-        $countIdAPI = AlimentoApi::find()->count();
-
-        if ($data->load(Yii::$app->request->post())) {
-
-            if($countIdAPI == 0)
-            {
-                $alimentoApi = new AlimentoApi();
-                $alimentoApi->id_api = 1;
-                $alimentoApi->save(false);
-
-                $data->id_api = 1;
-            }
-            else
-            {
-                $maxIdAPI = AlimentoApi::find()->max('id_api');
-
-                $maxIdAPI = $maxIdAPI + 1;
-
-                $alimentoApi = new AlimentoApi();
-                $alimentoApi->id_api = $maxIdAPI;
-                $alimentoApi->save(false);
-
-
-                $data->id_api = $maxIdAPI;
-            }
-
-            $data->save();
-
-            return $this->redirect(['index']);
-        } else {
-
-            return $this->renderAjax('create', [
-                'data' => $data,
-            ]);
-        }*/
-
-
-
-        /*$data = new CreateForm();
-        if ($data->load(Yii::$app->request->post())) {
-            return $this->redirect(['index']);
-        }
-
-        return $this->renderAjax('create', [
-            'data' => $data,
-        ]);*/
-
-
-
         $data = new CreateForm();
+
         if ($data->load(Yii::$app->request->post())) {
-            if ($data->create()) {
-                return $this->redirect(['index']);
+
+            $v = $data->create();
+
+            if ($v != null) {
+                $this->redirect(['index']);
             }
         }
 
@@ -135,47 +89,70 @@ class FoodController extends Controller
         ]);
     }
 
-    public function actionUpdate($type, $id)
+    public function actionUpdate($id)
     {
-        $data = Tips::find()->where(['id' => $id])->one();
+        $data = Alimentos::findOne($id);
 
-        if ($data->load(Yii::$app->request->post()) && $data->save()) {
-            return $this->redirect(['index', 'type' => $type]);
-        } else {
-            return $this->renderAjax('update', [
-                'data' => $data,
-            ]);
+        if ($data->load(Yii::$app->request->post())) {
+            if ($data->validate()) {
+                $data->save(false);
+                $this->redirect(['index']);
+            }
         }
+
+        return $this->renderAjax('update', [
+            'data' => $data,
+        ]);
     }
 
-    public function actionDelete($response, $type, $id)
+    public function actionDelete($response, $id)
     {
         if($id != null && $response == null)
         {
-            echo $this->renderAjax('DeletePopUp', ['id' => $id, 'type' => $type]);
+            echo $this->renderAjax('DeletePopUp', ['id' => $id]);
 
         }else {if ($id != null && $response != null) {
             if ($response == "yes") {
 
-                $tips = Tips::find()->where(['id' => $id])->one();
+                $alimento = Alimentos::findOne($id);
 
-                $tips->delete();
+                $alimentoApiID = $alimento->id_api;
 
-                return $this->redirect(['index', 'type' => $type]);
+                $alimento->delete();
+
+                $api = AlimentoApi::find()->where(['id' => $alimentoApiID])->one();
+
+                $api->delete();
+
+                return $this->redirect(['index']);
             } else {
-                return $this->redirect(['index', 'type' => $type]);
+                return $this->redirect(['index']);
             }
         } else {
-            return $this->redirect(['index', 'type' => $type]);
+            return $this->redirect(['index']);
         }
         }
     }
 
-    public function actionSearchtitle($testsearch, $type){
+    public function actionSearchfood($testsearch, $como){
 
-        $tipschannel =  TipsChannel::find()->where(['channel' => $type])->one();
-
-        $find_result = Tips::find()->where(['id_channel' => $tipschannel->id],['like', 'id', $testsearch])->all();
+        switch ($como) {
+            case "nome":
+                $find_result = Alimentos::find()->where(['id_alimento_user' => null])->andWhere(['like', 'nome', $testsearch])->all();
+                break;
+            case "calorias":
+                $find_result = Alimentos::find()->where(['id_alimento_user' => null])->andWhere(['like', 'calorias', $testsearch])->all();
+                break;
+            case 'lipidos':
+                $find_result = Alimentos::find()->where(['id_alimento_user' => null])->andWhere(['like', 'lipidos', $testsearch])->all();
+                break;
+            case 'carboidratos':
+                $find_result = Alimentos::find()->where(['id_alimento_user' => null])->andWhere(['like', 'carboidratos', $testsearch])->all();
+                break;
+            case 'proteina':
+                $find_result = Alimentos::find()->where(['id_alimento_user' => null])->andWhere(['like', 'proteina', $testsearch])->all();
+                break;
+        }
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $find_result;

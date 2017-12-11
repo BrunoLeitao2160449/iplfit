@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
         'js/modalFunc.js',
         'js/Search.js',
         'js/tips.js',
+        'js/jquery.validate.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -16,10 +16,6 @@ cakebake\bootstrap\select\BootstrapSelectAsset::register($this, [
     ],
 ]);
 
-/* @var $this yii\web\View */
-/* @var $searchModel common\models\UserSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title="Food Manager";
 ?>
 
@@ -28,7 +24,7 @@ $this->title="Food Manager";
     <?php
 
     Modal::begin([
-        'header' => '<h4>Warning! <br> <br> Are you sure you want to delete this Tip? </h4>',
+        'header' => '<h4>Aviso! <br> <br> Tem a certeza que pertende remover este alimento? </h4>',
         'id' => 'modal',
         'size' => 'modal-s',
     ]);
@@ -42,8 +38,8 @@ $this->title="Food Manager";
     <?php
 
     Modal::begin([
-        'header' => '<h4>Edit Tip</h4>',
-        'id' => 'modal_edit_tip',
+        'header' => '<h4>EditForm Food</h4>',
+        'id' => 'modal_update_food',
         'size' => 'modal-lg',
     ]);
 
@@ -56,7 +52,7 @@ $this->title="Food Manager";
     <?php
 
     Modal::begin([
-        'header' => '<h4>Create Tip</h4> <br> Alimento adiconado por 100g',
+        'header' => '<h4>Adicionar Alimento</h4> <br> Alimento adiconado por 100g',
         'id' => 'modal_create_food',
         'size' => 'modal-lg',
     ]);
@@ -84,11 +80,11 @@ $this->title="Food Manager";
 
             </span>
 
-            <input type="text" maxlength="200" class="form-control" id="pesquisa_text" placeholder="Search">
+            <input type="text" maxlength="200" class="form-control" id="pesquisa_text_food" placeholder="Search">
 
-            <div class="pesquisa-control" data-info="<?= Url::toRoute(['user/searchmail']); ?>"></div>
+            <div class="pesquisa-control-food" data-info="<?= Url::toRoute(['food/searchfood']); ?>"></div>
 
-            <select id="pesquisa_como" class="selectpicker" data-style="btn-primary">
+            <select id="pesquisa_food_como" class="selectpicker" data-style="btn-primary">
                 <option value="nome">Nome (Kcal) &nbsp</option>
                 <option value="calorias">Calorias (g) &nbsp</option>
                 <option value="lipidos">Lipídos (g) &nbsp</option>
@@ -106,7 +102,7 @@ $this->title="Food Manager";
             </h2>
         </div>
 
-    <table class="table" id="table_search" style="margin-top: 8%">
+    <table class="table" id="table_food_search" style="margin-top: 8%">
         <thead>
 
         <tr>
@@ -127,11 +123,11 @@ $this->title="Food Manager";
             <th class="col-sm-2" style="text-align: center">Actions</th>
         </tr>
         </thead>
-        <div id="pesquisa_button_view" data-info="<?= Url::to(['user/view?update=no&role='.null.'&id=']) ?>" />
-        <div id="pesquisa_button_delete" data-info="<?= Url::to(['user/delete?id=']) ?>" />
-        <tbody id="table_search_body">
+        <div id="pesquisa_button_edit" data-info="<?= Url::to(['food/update?id=']) ?>" />
+        <div id="pesquisa_button_delete" data-info="<?= Url::to(['food/delete?response='. null . '&id=']) ?>" />
+        <tbody id="table_search_food_body">
         <?php foreach ( $data as $key => $record) {?>
-            <tr id="row_search" >
+            <tr id="row_search_food" >
                 <td id="row_nome">
                     <?= $record->nome ?>
                 </td>
@@ -148,9 +144,9 @@ $this->title="Food Manager";
                     <?= $record->proteina ?>
                 </td>
                 <td style="text-align: center">
-                    <?= Html::button('Editar', ['value' => Url::to(['user/view?update=no&role='.null.'&id=' . $record->id]), 'class'=>'btn btn-primary btn-xs', 'id' => 'modalBtnView']) ?>
+                    <?= Html::button('Editar', ['value' => Url::to(['food/update?id=' . $record->id]), 'class'=>'btn btn-primary btn-xs', 'id' => 'modalBtnEditFood']) ?>
 
-                    <?= Html::button('Remover', ['value' => Url::to(['user/delete?id='.$record->id.'&response='.null]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
+                    <?= Html::button('Remover', ['value' => Url::to(['food/delete?id='.$record->id.'&response='.null]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
                 </td>
             </tr>
         <?php }?>

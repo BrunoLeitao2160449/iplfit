@@ -94,7 +94,7 @@ Modal::end();
     </tr>
     </thead>
     <div id="pesquisa_button_view" data-info="<?= Url::to(['user/view?update=no&role='.null.'&id=']) ?>" />
-    <div id="pesquisa_button_delete" data-info="<?= Url::to(['user/delete?id=']) ?>" />
+    <div id="pesquisa_button_delete" data-info="<?= Url::to(['user/delete?response='. null . '&id=']) ?>" />
     <tbody id="table_search_body">
     <?php foreach ( $data as $key => $record) {?>
         <tr id="row_search">
@@ -110,7 +110,7 @@ Modal::end();
             <td>
                 <?= Html::button('View', ['value' => Url::to(['user/view?update=no&role='.null.'&id=' . $record->Id]), 'class'=>'btn btn-warning btn-xs', 'id' => 'modalBtnView']) ?>
 
-                <?= Html::button('delete', ['value' => Url::to(['user/delete?id='.$record->Id.'&response='.null]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
+                <?= Html::button('delete', ['value' => Url::to(['user/delete?response='. null . '&id='.$record->Id]), 'class'=>'btn btn-danger btn-xs', 'id' => 'modalBtn']) ?>
             </td>
         </tr>
     <?php }?>

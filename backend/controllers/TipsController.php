@@ -127,7 +127,7 @@ class TipsController extends Controller
 
         $tipschannel =  TipsChannel::find()->where(['channel' => $type])->one();
 
-        $find_result = Tips::find()->where(['id_channel' => $tipschannel->id],['like', 'id', $testsearch])->all();
+        $find_result = Tips::find()->where(['id_channel' => $tipschannel->id])->andWhere(['like', 'title', $testsearch])->all();
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $find_result;

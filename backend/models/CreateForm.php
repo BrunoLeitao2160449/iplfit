@@ -21,9 +21,16 @@ class CreateForm extends Model
 
             ['nome', 'required'],
 
+            ['calorias', 'required'],
             ['calorias', 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
+
+            ['lipidos', 'required'],
             ['lipidos', 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
+
+            ['carboidratos', 'required'],
             ['carboidratos', 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
+
+            ['proteina', 'required'],
             ['proteina', 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
         ];
     }
@@ -73,7 +80,14 @@ class CreateForm extends Model
             }
 
             return $data;
+        }else {
+            return null;
         }
-        return null;
+
+
+    }
+
+    public function edit($id) {
+
     }
 }
