@@ -65,7 +65,7 @@ class Tips extends \yii\db\ActiveRecord
 
         $channel = TipsChannel::find()->where(['id' => $this->id_channel])->one();
 
-        $this->FazPublish($channel->channel, $this->title);
+        $this->FazPublish($channel->channel, $this->title."\n".$this->content);
     }
 
     public function FazPublish($canal,$msg)

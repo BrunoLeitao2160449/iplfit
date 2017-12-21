@@ -5,22 +5,23 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "alimento_user".
+ * This is the model class for table "dia_utilizador".
  *
  * @property string $id
  * @property integer $id_user
+ * @property string $id_dia
  *
  * @property ComplementoUser $idUser
- * @property Alimentos[] $alimentos
+ * @property Dia $idDia
  */
-class AlimentoUser extends \yii\db\ActiveRecord
+class DiaUtilizador extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'alimento_user';
+        return 'dia_utilizador';
     }
 
     /**
@@ -30,8 +31,9 @@ class AlimentoUser extends \yii\db\ActiveRecord
     {
         return [
             [['id_user'], 'required'],
-            [['id_user'], 'integer'],
+            [['id_user', 'id_dia'], 'integer'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => ComplementoUser::className(), 'targetAttribute' => ['id_user' => 'id_user']],
+            [['id_dia'], 'exist', 'skipOnError' => true, 'targetClass' => Dia::className(), 'targetAttribute' => ['id_dia' => 'id']],
         ];
     }
 
@@ -43,6 +45,7 @@ class AlimentoUser extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_user' => 'Id User',
+            'id_dia' => 'Id Dia',
         ];
     }
 
@@ -57,8 +60,8 @@ class AlimentoUser extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAlimentos()
+    public function getIdDia()
     {
-        return $this->hasMany(Alimentos::className(), ['id_alimento_user' => 'id']);
+        return $this->hasOne(Dia::className(), ['id' => 'id_dia']);
     }
 }

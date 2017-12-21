@@ -9,7 +9,7 @@ use Yii;
  *
  * @property string $id
  * @property string $id_api
- * @property string $id_alimento_user
+ * @property integer $id_alimento_user
  * @property string $nome
  * @property string $calorias
  * @property string $lipidos
@@ -17,7 +17,7 @@ use Yii;
  * @property string $proteina
  *
  * @property AlimentoApi $idApi
- * @property AlimentoUser $idAlimentoUser
+ * @property ComplementoUser $idAlimentoUser
  * @property RefeicaoDia[] $refeicaoDias
  */
 class Alimentos extends \yii\db\ActiveRecord
@@ -40,7 +40,7 @@ class Alimentos extends \yii\db\ActiveRecord
             [['calorias', 'lipidos', 'carboidratos', 'proteina'], 'number'],
             [['nome'], 'string', 'max' => 80],
             [['id_api'], 'exist', 'skipOnError' => true, 'targetClass' => AlimentoApi::className(), 'targetAttribute' => ['id_api' => 'id']],
-            [['id_alimento_user'], 'exist', 'skipOnError' => true, 'targetClass' => AlimentoUser::className(), 'targetAttribute' => ['id_alimento_user' => 'id']],
+            [['id_alimento_user'], 'exist', 'skipOnError' => true, 'targetClass' => ComplementoUser::className(), 'targetAttribute' => ['id_alimento_user' => 'id_user']],
         ];
     }
 
@@ -74,7 +74,7 @@ class Alimentos extends \yii\db\ActiveRecord
      */
     public function getIdAlimentoUser()
     {
-        return $this->hasOne(AlimentoUser::className(), ['id' => 'id_alimento_user']);
+        return $this->hasOne(ComplementoUser::className(), ['id_user' => 'id_alimento_user']);
     }
 
     /**
@@ -83,36 +83,5 @@ class Alimentos extends \yii\db\ActiveRecord
     public function getRefeicaoDias()
     {
         return $this->hasMany(RefeicaoDia::className(), ['id_alimento' => 'id']);
-    }
-
-    public function afterDelete()
-    {
-        parent::afterDelete();
-
-        $prod_id= $this->id;
-        $myObj=new \stdClass();
-        $myObj->id=$prod_id;
-        $myJSON = json_encode($myObj);
-
-        $this->FazPublish("test",$myJSON);
-    }
-
-    public function FazPublish($canal,$msg)
-    {
-        $server = "5.196.27.244";
-        $port = 1883;
-        $username = ""; // set your username
-        $password = ""; // set your password
-        $client_id = "test";
-        $mqtt = new Mosquitto();
-        $mqtt->address = $server;
-        $mqtt->port = $port;
-        $mqtt->clientid = $client_id;
-        if ($mqtt->connect(true, NULL, $username, $password))
-        {
-            $mqtt->publish($canal, $msg, 0);
-            $mqtt->close();
-        }
-        else { file_put_contents("debug.output","Time out!"); }
     }
 }

@@ -2,17 +2,20 @@
 
 namespace backend\controllers;
 
-use common\models\Auth;
+use common\models\Alimentos;
 use common\models\AuthAssignment;
 use common\models\Complemento;
-use backend\models\EdituserForm;
+use common\models\DiaUtilizador;
+use common\models\Mosquitto;
+use common\models\RefeicaoDia;
 use Yii;
 use common\models\User;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\filters\AccessControl;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use common\models\Tips;
 
 class UserController extends Controller
 {
@@ -105,6 +108,30 @@ class UserController extends Controller
 
         }else {if ($id != null && $response != null) {
                 if ($response == "yes") {
+
+                    do {
+                        $refeicao_dia = RefeicaoDia::find()
+                            ->leftJoin('alimentos', '`alimentos`.`id` = `refeicao_dia`.`id_alimento`')
+                            ->leftJoin('complemento_user', '`complemento_user`.`id_user` = `alimentos`.`id_alimento_user`')
+                            ->where(['`complemento_user`.`id_user`' => $id])->one();
+
+                        if (count($refeicao_dia) != 0) {
+                            $refeicao_dia->delete();
+                        }
+
+                        $Alimentos = Alimentos::find()->where(['id_alimento_user' => $id])->one();
+
+                        if (count($Alimentos) != 0) {
+                            $Alimentos->delete();
+                        }
+
+                        $diautilizador = DiaUtilizador::find()->where(['id_user' => $id])->one();
+
+                        if (count($diautilizador) != 0) {
+                            $diautilizador->delete();
+                        }
+                    }while(count($diautilizador) != 0 || count($Alimentos) != 0 || count($refeicao_dia) != 0);
+
                     $ComplementoUser = Complemento::find()->where(['id_user' => $id])->one();
 
                     $ComplementoUser->delete();
@@ -113,7 +140,9 @@ class UserController extends Controller
 
                     $auth->delete();
 
-                    $this->findModel($id)->delete();
+                    $user = User::find()->where(['id' => $id])->one();
+
+                    $user->delete();
 
                     return $this->redirect(['index']);
                 } else {
@@ -142,5 +171,26 @@ class UserController extends Controller
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $find_result;
+    }
+
+
+
+    public function FazPublish($canal,$msg)
+    {
+        $server = "5.196.27.244";
+        $port = 1883;
+        $username = ""; // set your username
+        $password = ""; // set your password
+        $client_id = "yii";
+        $mqtt = new Mosquitto();
+        $mqtt->address = $server;
+        $mqtt->port = $port;
+        $mqtt->clientid = $client_id;
+        if ($mqtt->connect(true, NULL, $username, $password))
+        {
+            $mqtt->publish($canal, $msg, 0);
+            $mqtt->close();
+        }
+        else { file_put_contents("debug.output","Time out!"); }
     }
 }
