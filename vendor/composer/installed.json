@@ -3380,5 +3380,46 @@
             "yii",
             "yii2"
         ]
+    },
+    {
+        "name": "enochzg/yii2-mosquitto",
+        "version": "1.0.5",
+        "version_normalized": "1.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/EnochZg/yii2-mosquitto.git",
+            "reference": "621ced1ceccb77df41aff27ff20c530f3a549582"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/EnochZg/yii2-mosquitto/zipball/621ced1ceccb77df41aff27ff20c530f3a549582",
+            "reference": "621ced1ceccb77df41aff27ff20c530f3a549582",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-03-19T07:12:41+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "enochzg\\mosquitto\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "EnochZg",
+                "email": "15989529532@163.com"
+            }
+        ],
+        "description": "yii2-mosquitto",
+        "keywords": [
+            "helper",
+            "mosquitto",
+            "push",
+            "yii2"
+        ]
     }
 ]

@@ -75,4 +75,13 @@ return array (
       '@cakebake/bootstrap/select' => $vendorDir . '/cakebake/yii2-bootstrap-select',
     ),
   ),
+  'enochzg/yii2-mosquitto' => 
+  array (
+    'name' => 'enochzg/yii2-mosquitto',
+    'version' => '1.0.5.0',
+    'alias' => 
+    array (
+      '@enochzg/mosquitto' => $vendorDir . '/enochzg/yii2-mosquitto',
+    ),
+  ),
 );

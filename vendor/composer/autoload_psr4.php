@@ -16,6 +16,7 @@ return array(
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
+    'enochzg\\mosquitto\\' => array($vendorDir . '/enochzg/yii2-mosquitto'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'cakebake\\bootstrap\\select\\' => array($vendorDir . '/cakebake/yii2-bootstrap-select'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),

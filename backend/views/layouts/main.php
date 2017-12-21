@@ -41,11 +41,11 @@ AppAsset::register($this);
         ]);
 
         $menuItems[] = [
-            'label' => 'Tips',
+            'label' => 'Dicas',
             'items' => [
-                ['label' => 'Health', 'url' => ['/tips/index', 'type' => 'Health']],
-                ['label' => 'Recipes', 'url' => ['/tips/index', 'type' => 'Recipes']],
-                ['label' => 'Sport', 'url' => ['/tips/index', 'type' => 'Sport']],
+                ['label' => 'Saúde', 'url' => ['/tips/index', 'type' => 'Saúde']],
+                ['label' => 'Receitas', 'url' => ['/tips/index', 'type' => 'Receitas']],
+                ['label' => 'Desporto', 'url' => ['/tips/index', 'type' => 'Desporto']],
             ],
         ];
 

@@ -32,6 +32,10 @@ class ComposerStaticInit2d1c2910e0e7816440479aa24d13844a
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'e' => 
+        array (
+            'enochzg\\mosquitto\\' => 18,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -121,6 +125,10 @@ class ComposerStaticInit2d1c2910e0e7816440479aa24d13844a
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'enochzg\\mosquitto\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/enochzg/yii2-mosquitto',
         ),
         'cebe\\markdown\\' => 
         array (
