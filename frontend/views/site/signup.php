@@ -37,6 +37,9 @@ use yii\bootstrap\ActiveForm;
 
             <?= $form->field($model, 'meta_peso')->textInput(['type' => 'decimal']) ?>
 
+            <?= $form->field($model, 'id_activity')->dropDownList(['1' => 'Sedentário', '2' => 'Actividade ligeira', '3' => 'Actividade moderada',
+                '4' => 'Actividade intensa', '5' => 'Actividade muito intensa'],['prompt'=>'Select Option']); ?>
+
             <?= $form->field($model, 'obs')->textInput() ?>
 
             <div class="form-group">

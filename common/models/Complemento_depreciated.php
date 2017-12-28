@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "complemento_user".
  *
  * @property integer $id_user
- * @property integer $id_activity
  * @property string $nome
  * @property string $data_nasc
  * @property string $peso
@@ -16,12 +15,11 @@ use Yii;
  * @property string $meta_peso
  * @property string $obs
  *
- * @property Alimentos[] $alimentos
+ * @property AlimentoUser[] $alimentoUsers
  * @property User $idUser
- * @property ActivityLevel $idActivity
  * @property DiaUtilizador[] $diaUtilizadors
  */
-class Complemento extends \yii\db\ActiveRecord
+class Complemento_depreciated extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -37,14 +35,13 @@ class Complemento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'id_activity', 'nome', 'data_nasc'], 'required'],
-            [['id_user', 'id_activity'], 'integer'],
+            [['id_user', 'nome', 'data_nasc'], 'required'],
+            [['id_user'], 'integer'],
             [['data_nasc'], 'safe'],
             [['peso', 'altura', 'meta_peso'], 'number'],
             [['nome'], 'string', 'max' => 110],
             [['obs'], 'string', 'max' => 500],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
-            [['id_activity'], 'exist', 'skipOnError' => true, 'targetClass' => ActivityLevel::className(), 'targetAttribute' => ['id_activity' => 'id']],
         ];
     }
 
@@ -55,7 +52,6 @@ class Complemento extends \yii\db\ActiveRecord
     {
         return [
             'id_user' => 'Id User',
-            'id_activity' => 'Id Activity',
             'nome' => 'Nome',
             'data_nasc' => 'Data Nasc',
             'peso' => 'Peso',
@@ -79,14 +75,6 @@ class Complemento extends \yii\db\ActiveRecord
     public function getIdUser()
     {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getActivity()
-    {
-        return $this->hasOne(ActivityLevel::className(), ['id' => 'id_activity']);
     }
 
     /**

@@ -9,7 +9,6 @@ use yii\helpers\Url;
 $this->title = 'IPLFit';
 ?>
 
-
 <div  style="background: url('../web/images/food5.jpg'); min-height: 800px;">
     <div class="container">
 
@@ -60,6 +59,7 @@ $this->title = 'IPLFit';
     <br>
     <br>
     <br>
+
 
     <h2 class="bigpixi_head"><span>What are the tools to achieve your goals?</h2>
 

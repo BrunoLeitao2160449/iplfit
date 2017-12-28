@@ -1,3 +1,3 @@
 1 - Traduzir o site todo.
-2 - Remover users com bug (Dica - Não esquecer de apagar primeiro as relações)
+2 - Remover alimentos - ter cuidado para nao estoirar ao eliminar alimento usado
 3 - Frontend, colocar o controlo de alimentos.

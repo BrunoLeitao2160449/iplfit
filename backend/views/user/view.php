@@ -40,6 +40,10 @@ use common\models\Complemento;
                         'value' => $model->complemento->meta_peso,
                     ],
                     [
+                        'label' => 'Activity Level',
+                        'value' => $model->complemento->activity->description,
+                    ],
+                    [
                         'label' => 'Permission Role',
                         'value' => $model->auth->item_name,
                     ],
@@ -76,6 +80,10 @@ use common\models\Complemento;
                     [
                         'label' => 'Goal Weight',
                         'value' => $model->complemento->meta_peso,
+                    ],
+                    [
+                        'label' => 'Activity Level',
+                        'value' => $model->complemento->activitylevel->description,
                     ],
 
                     [

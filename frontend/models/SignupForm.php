@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use common\models\ActivityLevel;
 use yii\base\Model;
 use common\models\User;
 use common\models\Complemento;
@@ -18,6 +19,7 @@ class SignupForm extends Model
     public $altura;
     public $peso;
     public $meta_peso;
+    public $id_activity;
     public $obs;
 
 
@@ -47,6 +49,8 @@ class SignupForm extends Model
             ['peso', 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
             ['meta_peso', 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
 
+            ['id_activity', 'required'],
+
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
@@ -67,7 +71,8 @@ class SignupForm extends Model
             'data_nasc' => 'Birthday Date',
             'altura' => 'Height',
             'peso' => 'Weight',
-            'meta_peso' => 'Goal Weight'
+            'meta_peso' => 'Goal Weight',
+            'id_activity' => 'Activity Level'
         ];
     }
 
@@ -96,6 +101,7 @@ class SignupForm extends Model
             $complement->peso = $this->peso;
             $complement->altura = $this->altura;
             $complement->meta_peso = $this->meta_peso;
+            $complement->id_activity = $this->id_activity;
             $complement->obs = $this->obs;
             $complement->save(false);
 
